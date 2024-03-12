@@ -10,16 +10,10 @@ const FIRST_ROTOR_ALPHABET = "cbgahiefjqrskmlnyopxuvtzwd".toLocaleLowerCase();
 const SECOND_ROTOR_ALPHABET = "efcdklghijpzqrsytuvxwamnob".toLocaleLowerCase();
 const THIRD_ROTOR_ALPHABET = "hgdefolcnpamuqrswtyzvijkxb".toLocaleLowerCase();
 
-const START_ROTOR_POSITIONS = Object.freeze({
-  first: 14,
-  second: 9,
-  third: 12,
-});
-
 const rotorPositions = {
-  first: START_ROTOR_POSITIONS.first,
-  second: START_ROTOR_POSITIONS.second,
-  third: START_ROTOR_POSITIONS.third,
+  first: $FIRST_ROTOR.value,
+  second: $SECOND_ROTOR.value,
+  third: $THIRD_ROTOR.value,
 };
 
 function createReflector() {
@@ -54,12 +48,6 @@ function reverseRotor(rotor) {
     newObj[rotor[key]] = key;
   }
   return newObj;
-}
-
-function initializeRotorsWithDefaultPositions() {
-  $FIRST_ROTOR.value = START_ROTOR_POSITIONS.first;
-  $SECOND_ROTOR.value = START_ROTOR_POSITIONS.second;
-  $THIRD_ROTOR.value = START_ROTOR_POSITIONS.third;
 }
 
 function rotateRotors() {
@@ -102,7 +90,6 @@ function runEncryption(letter, reflector) {
 }
 
 function init() {
-  initializeRotorsWithDefaultPositions();
   const reflector = createReflector();
   $INPUT.addEventListener("keypress", (event) => {
     const letter = event.key.toLowerCase();
